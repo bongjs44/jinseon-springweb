@@ -49,7 +49,7 @@ public class ArticleController {
 	model.addAttribute("articles", articleList);
 		return "articles";
 	}
-	//완료
+	//글 저장
 	@PostMapping("/finish")
 	public String editText(Article article, HttpSession session) {
 		Object memberObj = session.getAttribute("MEMBER");
@@ -62,7 +62,7 @@ public class ArticleController {
 		articleDao.insertArticle(article);
 		return "finish";
 	}
-	//글 등록
+	//글 등록 화면
 	@GetMapping("/edittext")
 	public String edittext(HttpSession session) {
 		Object memberObj = session.getAttribute("MEMBER");

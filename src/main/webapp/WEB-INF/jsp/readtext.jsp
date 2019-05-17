@@ -35,7 +35,7 @@ td {
 	<tr>
 		<td>내용</td>
 		<td>${article.contentHtml }</td>
-	</tr>6
+	</tr>
 	</table>
 	<p>
 		<a href="./app/edittext">[글 쓰기]</a>

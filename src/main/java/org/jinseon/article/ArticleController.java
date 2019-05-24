@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.SessionAttribute;
 
 @Controller
 public class ArticleController {
@@ -51,12 +52,14 @@ public class ArticleController {
 	}
 	//글 저장
 	@PostMapping("/finish")
-	public String editText(Article article, HttpSession session) {
-		Object memberObj = session.getAttribute("MEMBER");
+	public String editText(Article article, HttpSession session,
+			@SessionAttribute("MEMBER") Member member) {
+		//Object memberObj = session.getAttribute("MEMBER");
+		/*
 		if (memberObj == null)
 			return "redirect:/app/loginForm";
 		
-		Member member = (Member) memberObj;
+		Member member = (Member) memberObj; */
 		article.setUserId(member.getMemberId());
 		article.setName(member.getName());
 		articleDao.insertArticle(article);
@@ -65,10 +68,11 @@ public class ArticleController {
 	//글 등록 화면
 	@GetMapping("/edittext")
 	public String edittext(HttpSession session) {
+		/*
 		Object memberObj = session.getAttribute("MEMBER");
 		if (memberObj == null)
 			return "redirect:/app/loginForm";
-		
+		*/
 		return "edittext";
 	}
 	//글보기

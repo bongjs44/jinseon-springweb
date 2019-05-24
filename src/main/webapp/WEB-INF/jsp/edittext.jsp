@@ -5,6 +5,7 @@
 <title>게시글 입력</title>
 </head>
 <body>
+	<%@ include file="/WEB-INF/jsp/header.jsp"%>
 	<h2>게시글 입력</h2>
 	<form action="./app/finish" method="post">
 		<p>

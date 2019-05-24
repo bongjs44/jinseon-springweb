@@ -12,5 +12,14 @@ public interface ArticleDao {
 		//조회
 		Article getArticle(String articleId);
 		
+		/**
+		 * 수정
+		 */
+		void updateArticle(Article article);
 
+		/**
+		 * 삭제
+		 */
+		void deleteArticle(String articleId);
+	
 }

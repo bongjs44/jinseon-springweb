@@ -1,5 +1,8 @@
 package org.jinseon.article;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,7 +31,12 @@ public class ArticleDaoImplUsingSpringJdbc implements ArticleDao {
 
 	//글 갯수
 	static final String COUNT_ALL = "SELECT count(articleId) count FROM article";
-
+	
+	//글 수정
+	static final String UPDATE_ARTICLE = "UPDATE article SET title=?, content=? WHERE articleId=?";
+	//글 삭제
+	static final String DELETE_ARTICLE = "DELETE FROM article WHERE articleId=?";
+	
 	@Autowired
 	JdbcTemplate jdbcTemplate;
 	
@@ -60,6 +68,19 @@ public class ArticleDaoImplUsingSpringJdbc implements ArticleDao {
 		return jdbcTemplate.queryForObject(GET_ARTICLE,new BeanPropertyRowMapper<>(Article.class), articleId);
 	}
 
+	@Override
+	public void updateArticle(Article article) {
+		// TODO Auto-generated method stub
+		jdbcTemplate.update(UPDATE_ARTICLE, article.getArticleId());
+	}
+
+	@Override
+	public void deleteArticle(String articleId) {
+		// TODO Auto-generated method stub
+		jdbcTemplate.update(DELETE_ARTICLE, articleId);
+	}
+	
+	
 	
 
 }

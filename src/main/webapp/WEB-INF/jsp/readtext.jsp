@@ -43,5 +43,9 @@ td {
 	<p>
 		<a href="./app/articles">[돌아가기]</a>
 	</p>
+	<p>
+		<a href="./app/updatearticle">[글 수정]</a>
+		<a href="./app/deletearticle">[글 삭제]</a>
+	</p>
 </body>
 </html>

@@ -22,7 +22,7 @@ public class ArticleDaoImplUsingSpringJdbc implements ArticleDao {
 	/**
 	 * 글 1개 가져오는 sql
 	 */
-	static final String GET_ARTICLE = "SELECT articleId, title, content, name, cdate FROM article WHERE articleId=?";
+	static final String GET_ARTICLE = "SELECT articleId,userId, title, content, name, cdate FROM article WHERE articleId=?";
 
 	/**
 	 * 글 등록하는 sql
@@ -71,7 +71,7 @@ public class ArticleDaoImplUsingSpringJdbc implements ArticleDao {
 	@Override
 	public void updateArticle(Article article) {
 		// TODO Auto-generated method stub
-		jdbcTemplate.update(UPDATE_ARTICLE, article.getArticleId());
+		jdbcTemplate.update(UPDATE_ARTICLE, article.getTitle(), article.getContent(), article.getArticleId());
 	}
 
 	@Override

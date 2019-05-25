@@ -12,7 +12,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttribute;
 
@@ -52,7 +51,7 @@ public class ArticleController {
 	}
 	//글 저장
 	@PostMapping("/finish")
-	public String editText(Article article, HttpSession session,
+	public String editText(Article article,// HttpSession session,
 			@SessionAttribute("MEMBER") Member member) {
 		//Object memberObj = session.getAttribute("MEMBER");
 		/*
@@ -78,9 +77,47 @@ public class ArticleController {
 	//글보기
 	@GetMapping("/readtext")
 	public void readtext(@RequestParam("articleId") String articleId,
-			Model model) {
+			Model model
+			) {
 		Article article = articleDao.getArticle(articleId);
 		model.addAttribute("article",article);
 	}
 	
+	//글수정
+	@PostMapping("/update")
+	public String update(Article article,
+			@RequestParam("articleId") String articleId,
+			@SessionAttribute("MEMBER") Member member
+			) {
+		article.setArticleId(articleId);
+		articleDao.updateArticle(article);
+		return "redirect:/app/articles";
+	}
+	
+	//글 수정 화면
+	@GetMapping("/updateForm")
+		public String updateForm(@RequestParam("articleId") String articleId,
+				@SessionAttribute("MEMBER") Member member,
+				Model model) {
+			Article article = articleDao.getArticle(articleId);
+			model.addAttribute("article",article);
+			return "updateForm";
+		}
+	
+	//글삭제
+		@GetMapping("/deletearticle")
+		public String deletearticle(
+				@RequestParam("articleId") String articleId,
+				@SessionAttribute("MEMBER") Member member
+				) {
+			Article article = articleDao.getArticle(articleId);
+			
+			//String memberId = "member.getMemberId()";
+			//String userId = "article.getArticleId()";
+			if (!member.getMemberId().equals(article.getUserId())) {
+				return "redirect:/app/readtext?articleId="+articleId;
+			}
+			articleDao.deleteArticle(articleId);
+			return "redirect:/app/articles";
+		}
 }

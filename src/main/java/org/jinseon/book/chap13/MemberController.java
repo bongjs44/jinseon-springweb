@@ -26,11 +26,6 @@ public class MemberController {
 
 	@RequestMapping("/member/memberInfo")
 	public String memberInfo(HttpSession session) {
-		Object memberObj = session.getAttribute("MEMBER");
-		if (memberObj == null)
-			// 세션에 MEMBER가 없을 경우 로그인 화면으로
-			return "login/loginForm";
-
 		return "member/memberInfo";
 	}
 

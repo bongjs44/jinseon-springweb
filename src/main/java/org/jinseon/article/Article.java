@@ -11,8 +11,6 @@ public class Article {
 	String udate;
 
 	
-	
-	
 	public String getArticleId() {
 		return articleId;
 	}

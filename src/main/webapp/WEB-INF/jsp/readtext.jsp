@@ -4,6 +4,14 @@
 <head>
 <base href="${pageContext.request.contextPath }/" />
 <title>게시글 조</title>
+<script type="text/javascript">
+	function confirmDelete() {
+		if (confirm("삭제하시겠습니까?"))
+			return true;
+		else
+			return false;
+	}
+</script>
 </head>
 <%@ include file="/WEB-INF/jsp/header.jsp"%>
 <style type="text/css">
@@ -54,7 +62,8 @@ td {
 	</c:when>
 	<c:otherwise>
 		<a href="./app/updateForm?articleId=${article.articleId}">[글 수정]</a>
-		<a href="./app/deletearticle?articleId=${article.articleId}">[글 삭제]</a>
+		<a href="./app/deletearticle?articleId=${article.articleId }"
+onclick="return confirmDelete();">글삭제</a>
 	</c:otherwise>
 	</c:choose>
 	</p>

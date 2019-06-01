@@ -25,6 +25,7 @@
 			<mvc:mapping path="/finish" />
 			<mvc:mapping path="/updateForm"/>
 			<mvc:mapping path="/deletearticle"/>
+			<mvc:mapping path="/letter/**" />
 			<bean class="org.jinseon.book.chap13.AuthCheckInterceptor" />
 		</mvc:interceptor>
 	</mvc:interceptors>

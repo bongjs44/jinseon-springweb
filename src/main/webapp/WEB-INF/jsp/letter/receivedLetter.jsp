@@ -1,16 +1,13 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!doctype html>
-<!-- 회원 목록 -->
 <html>
 <head>
-<base href="${pageContext.request.contextPath }/" />
-<title>회원 목록</title>
+<title>받은 편지 목록</title>
 </head>
 <body>
 	<%@ include file="/WEB-INF/jsp/header.jsp"%>
-	<h2>회원 목록</h2>
 	<p>전체 ${totalCount }건</p>
-	<form action="./app/members">
+	<form action="./receivedLetter">
 		<input type="number" name="page" value="${param.page }" placeholder="페이지"
 			min="1" max="${totalCount / 100 + 1 }" step="1" style="width: 50px;">
 		<button type="submit">조회</button>
@@ -18,21 +15,17 @@
 	<table>
 		<thead>
 			<tr>
-				<td>회원번호</td>
-				<td>이메일</td>
-				<td>이름</td>
+				<td>제목</td>
+				<td>받는 사람</td>
 				<td>등록일시</td>
-				<td>기타</td>
 			</tr>
 		</thead>
 		<tbody>
-			<c:forEach var="member" items="${members}">
+			<c:forEach var="letter" items="${letters}">
 				<tr>
-					<td>${member.memberId }</td>
-					<td>${member.email }</td>
-					<td>${member.name }</td>
-					<td>${member.cdate }</td>
-					<td><a href="./app/letter/sendLetterForm?receiverId=${member.memberId }&receiverName=${member.name }">쪽지보내기</a></td>
+					<td><a href="./readLetter?letterId=${letter.letterId}&memberId=${letter.senderId}&mode=">${letter.title }</a></td>
+					<td>${letter.senderName }</td>
+					<td>${letter.cdate }</td>
 				</tr>
 			</c:forEach>
 		</tbody>

@@ -9,6 +9,8 @@ public class Letter {
 	String senderName;
 	String receiverId;
 	String receiverName;
+	String cdate;
+	
 	public String getLetterId() {
 		return letterId;
 	}
@@ -51,11 +53,28 @@ public class Letter {
 	public void setReceiverName(String receiverName) {
 		this.receiverName = receiverName;
 	}
+	public String getCdate() {
+		return cdate;
+	}
+	public void setCdate(String cdate) {
+		this.cdate = cdate;
+	}
+	
+	/**
+	 * \n를 <br/> 로 바꾼다. 글을 볼때 띄워쓰기를 할수있다
+	 */
+	public String getContentHtml() {
+		if (content != null)
+			return content.replace("\n", "<br/>");
+		return null;
+	}
+	
 	@Override
 	public String toString() {
 		return "Letter [letterId=" + letterId + ", title=" + title + ", content=" + content + ", senderId=" + senderId
-				+ ", senderName=" + senderName + ", receiverId=" + receiverId + ", receiverName=" + receiverName + "]\n";
+				+ ", senderName=" + senderName + ", receiverId=" + receiverId + ", receiverName=" + receiverName
+				+ ", cdate=" + cdate + "\n]";
 	}
-
+	
 	
 }
